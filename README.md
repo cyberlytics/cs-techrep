@@ -4,7 +4,7 @@
 This repository hosts the source code for the [CTAN](https://ctan.org/) package [cs-techrep](https://ctan.org/pkg/cs-techrep).
 
 
-This package contains templates for the creation of technical reports in computer science and software engineering. The style is a two-column format similar to IEEE. It is intended for lab reports and provides a beginner-friendly template example.
+This package provides a class for the creation of technical reports in computer science and software engineering. The style is a two-column format similar to IEEE. It is intended for lab reports and provides a beginner-friendly template example.
 
 
 DISCLAIMER: The cs-techrep class requires latex/pdflatex in combination with biblatex using a biber backend. This cs-techrep class does not support XeLaTeX or LuaTeX nor legacy bibtex or natbib.
