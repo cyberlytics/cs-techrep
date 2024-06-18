@@ -12,7 +12,7 @@
 \NeedsTeXFormat{LaTeX2e}
 
 % Provide the name of your document class, the date it was last updated, and a comment about what it's used for
-\ProvidesClass{cs-techrep}[2024/03/20 Technical Reports in Computer Science and Software Engineering v0.1]
+\ProvidesClass{cs-techrep}[2024/05/04 Technical Reports in Computer Science and Software Engineering v0.3]
 
 % Define marker counter for options (counter are global in latex):
 \newcounter{cstechrep@pbalancetracker}
@@ -58,7 +58,7 @@
 \DefcstechrepVar{Department}  % e.g., Department of Electrical Engineering, Media and Computer Science
 \DefcstechrepVar{Institution} % e.g., Ostbayerische Technische Hochschule Amberg-Weiden
 \DefcstechrepVar{Address}     % e.g., Amberg, Germany
-\DefcstechrepVar{Series}      % e.g., Technical Reports
+\DefcstechrepVar{Type}      % e.g., Technical Report
 \DefcstechrepVar{Year}        % e.g., 2023
 \DefcstechrepVar{Title}
 \DefcstechrepVar{Month}       % e.g., 6 (for June)
@@ -145,7 +145,7 @@
 
 \RequirePackage[cmyk, table]{xcolor}
 
-\RequirePackage[nolist]{acronym}
+\RequirePackage[nolist,smaller]{acronym}
 
 % Code Listings
 \RequirePackage{listings}
@@ -246,7 +246,7 @@
 \RequirePackage{booktabs}
 
 % Extended enumerate, such as \begin{compactenum}
-\RequirePackage{paralist}
+\RequirePackage[alwaysadjust]{paralist}
 
 % Read: Is there a disadvantage to using natbib=true with biblatex?
 % https://tex.stackexchange.com/questions/149313/is-there-a-disadvantage-to-using-natbib-true-with-biblatex
@@ -280,6 +280,7 @@
     autolang=other
 ]{biblatex}
 
+% Due to applied option defernumbers=true:
 % Prevent citations in the references are being numbered as '0' in ArXiv
 % https://tex.stackexchange.com/questions/463556/all-the-citations-in-the-references-are-being-numbered-as-0-in-arxiv-while-upl
 \makeatletter
@@ -352,8 +353,6 @@
 
 \RequirePackage{orcidlink}
 
-\RequirePackage[caption=false,font=footnotesize]{subfig}
-
 % For easy quotations: \enquote{text}
 % This package is very smart when nesting is applied, otherwise textcmds (see below) provides a shorter command
 \RequirePackage[autostyle=true]{csquotes}
@@ -412,9 +411,6 @@
 % Does not work on MiKTeX, therefore disabled - issue reported at https://github.com/MiKTeX/miktex-packaging/issues/271
 % \input{ushyphex}
 
-% correct bad hyphenation here
-\hyphenation{op-tical net-works semi-conduc-tor}
-
 % Enable copy and paste of text from the PDF
 % Only required for pdflatex. It "just works" in the case of lualatex.
 % Alternative: cmap or mmap package
@@ -435,6 +431,10 @@
 % https://stackoverflow.com/questions/2193307/how-do-i-get-latex-to-hyphenate-a-word-that-contains-a-dash
 \RequirePackage[shortcuts]{extdash} % Use \-/ for a breakable dash that does not prevent the remainer of the word to be hyphenated
 
+% requires, e.g., \PassOptionsToPackage{
+% type=CC,modifier=by,version=4.0}{doclicense} before \documentclass
+\RequirePackage[hyperxmp=false,lang=English]{doclicense}
+
 % Improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
 \makeatletter
 \def\ps@IEEEtitlepagestyle{
@@ -446,7 +446,9 @@
     \begin{minipage}{0.8\textwidth}
   \centering
     % Creative Commons / Open Access:
-    \href{https://creativecommons.org/licenses/by/4.0/}{\ccby{} This work is licensed under a Creative Commons Attribution 4.0 International (CC BY 4.0) License.}
+    %\href{https://creativecommons.org/licenses/by/4.0/}{\ccby{} This work is %licensed under a Creative Commons Attribution 4.0 International (CC BY 4.0) %License.}
+    % License based on doclicense package:
+    \href{\doclicenseURL}{\doclicenseIcon{} This work is licensed under a \doclicenseLongNameRef{} (\doclicenseNameRef{}) license.}
     % Citation advice:
     \\Please cite as: \fullcite{selfref}.
   \end{minipage}
@@ -478,7 +480,7 @@
 \cstechrepAddress
 }}
 
-\IEEEspecialpapernotice{\cstechrepSeries: \cstechrepNumber, \citemonth{selfref} \cstechrepYear}
+\IEEEspecialpapernotice{\cstechrepType: \cstechrepNumber, \citemonth{selfref} \cstechrepYear}
 
 % Balance/level columns at the last page / in bibliography
 % DISCLAIMER: No solution is a 100%/perfect one!

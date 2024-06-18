@@ -1,12 +1,14 @@
-\documentclass[conference,a4paper,flushend]{cs-techrep}
+\PassOptionsToPackage{type=CC,modifier=by,version=4.0}{doclicense}
+\documentclass[conference,a4paper]{cs-techrep}
 \pdfoutput=1 % pdflatex hint for arxiv.org (within first 5 lines)
 
-% Class iaria.cls loads biblatex / biber with predefined options
+% Class cs-techrep.cls loads biblatex / biber with predefined options
 \addbibresource{bibliography.bib}
 \addbibresource{cpn_all_all.bib}
 
 \cstechrepAuthorListTex{Vorname1 Nachname1, Vorname2 Nachname2, Vorname3 Nachname3, Vorname4 Nachname4,\\ Vorname5 Nachname5, Philipp Stangl, Christoph P.\ Neumann\,\orcidlink{0000-0002-5936-631X}}
 \cstechrepAuthorListBib{Vorname1 Nachname1 and Philipp Stangl and Vorname3 Nachname3 and Vorname4 Nachname4 and Vorname5 Nachname5 and Philipp Stangl and Christoph P. Neumann}
+% Capitalization: https://capitalizemytitle.com/style/Chicago/
 \cstechrepTitleTex{FoodFresh: Multi-Chain Design for an Inter-Institutional Food Supply Chain Network}
 \cstechrepTitleBib{{\cstechrepTitleTex}}
 \cstechrepDepartment{CyberLytics\-/Lab at the Department of Electrical Engineering, Media and Computer Science}
@@ -14,11 +16,11 @@
 \cstechrepInstitution{Ostbayerische Technische Hochschule Amberg\-/Weiden}
 \cstechrepAddress{Amberg, Germany}
 %\cstechrepAddress{Amberg, Deutschland} % DE
-\cstechrepSeries{Technical Reports}
-%\cstechrepSeries{Technische Berichte} % DE
+\cstechrepType{Technical Report}
+%\cstechrepType{Technischer Bericht} % DE
 \cstechrepYear{2023}
 \cstechrepMonth{7}
-\cstechrepNumber{CL-\cstechrepYear{}-42}
+\cstechrepNumber{CL-TR-\cstechrepYear{}-42}
 \cstechrepLang{english}  % en-US
 %\cstechrepLang{ngerman} % DE
 
@@ -28,11 +30,11 @@
         author = {|cstechrepAuthorListBib},
         title  = {\cstechrepTitleBib},
         institution = {\cstechrepInstitution, \cstechrepDepartment},
-        series = {\cstechrepSeries},
+        type   = {\cstechrepType},
         number = {\cstechrepNumber},
         year   = {|cstechrepYear},
         month  = {|cstechrepMonth},
-		langid  = {|cstechrepLang},
+        langid  = {|cstechrepLang},
     }
 \end{filecontents*}
 
@@ -113,8 +115,8 @@ In a \ac{fscn}, more than one supply chain and more than one business process ca
 \begin{figure}[ht]
     \centering
     \includegraphics[page=1,scale=0.23]{fig-fscn}
-	\caption{Schematic diagram of an \ac{fscn} (based on \citeauthor{van2005innovations}~\cite{van2005innovations})}
-	\label{fig:food_supply_network}
+    \caption{Schematic diagram of an \ac{fscn} (based on \citeauthor{van2005innovations}~\cite{van2005innovations})}
+    \label{fig:food_supply_network}
 \end{figure}
 
 \subsection{Blockchain Types} \label{s:blockchain_types}
@@ -164,7 +166,7 @@ The application tier encompasses application-specific blockchains (the parachain
   \centering
   \includegraphics[width=0.91\textheight,angle=90,origin=c]{fig-approach_overview_edit.pdf}
   \caption{Overview of our approach. The architecture is composed of three tiers: presentation, application, and relay. }
-	\label{fig:system_architecture}
+  \label{fig:system_architecture}
 \end{figure*}
 
 \subsubsection{Relay Tier} \label{s:relay_tier}

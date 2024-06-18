@@ -10,18 +10,13 @@
 % ======================================================================
 % EDIT THESE:
 
-\cstechrepAuthorListTex{Christoph P.\ Neumann\,\orcidlink{0000-0002-5936-631X}}
-% Team example:
-%\cstechrepAuthorListTex{Vorname1 Nachname1, Vorname2 Nachname2, Vorname3 Nachname3, Vorname4 Nachname4,\\ Vorname5 Nachname5, Vorname6 Nachname6, Christoph P.\ Neumann\,\orcidlink{0000-0002-5936-631X}}
-\cstechrepAuthorListBib{Christoph P. Neumann}
-% Team example:
-%\cstechrepAuthorListBib{Vorname1 Nachname1 and Vorname2 Nachname2 and Vorname3 Nachname3 and Vorname4 Nachname4 and Vorname5 Nachname5 and Vorname6 Nachname6 and Christoph P. Neumann}
+\cstechrepAuthorListTex{Vorname1 Nachname1, Vorname2 Nachname2, Vorname3 Nachname3, Vorname4 Nachname4,\\ Vorname5 Nachname5, Vorname6 Nachname6, Christoph P.\ Neumann\,\orcidlink{0000-0002-5936-631X}}
+\cstechrepAuthorListBib{Vorname1 Nachname1 and Vorname2 Nachname2 and Vorname3 Nachname3 and Vorname4 Nachname4 and Vorname5 Nachname5 and Vorname6 Nachname6 and Christoph P. Neumann}
 
 % Capitalization: https://capitalizemytitle.com/style/Chicago/
-\cstechrepTitleTex{The cs-techrep Example of a Technical Report in Computer Science and Software Engineering}
+\cstechrepTitleTex{CatchyName: A MEVN-based Cloud Application for Incidence Figures and Vaccination Progress}
  % IF you need manual linebreaks in the titel, then clone the title without linebreaks for BibTeX:
 \cstechrepTitleBib{{\cstechrepTitleTex}}
-%\cstechrepTitleBib{The cs-techrep \LaTeX{} Class Example of a Software Engineering Technical Report}
 
 \cstechrepDepartment{CyberLytics\-/Lab at the Department of Electrical Engineering, Media, and Computer Science}
 %\cstechrepDepartment{CyberLytics\-/Lab an der Fakultät Elektrotechnik, Medien und Informatik} % DE
@@ -30,9 +25,9 @@
 %\cstechrepAddress{Amberg, Deutschland} % DE
 \cstechrepType{Technical Report}
 %\cstechrepType{Technischer Bericht} % DE
-\cstechrepYear{2024} % CTAN
-\cstechrepMonth{5} % CTAN
-\cstechrepNumber{CL-TR-\cstechrepYear{}-99}
+\cstechrepYear{2024}
+\cstechrepMonth{3}
+\cstechrepNumber{CL-TR-\cstechrepYear{}-42}
 \cstechrepLang{english}  % en-US
 %\cstechrepLang{ngerman} % DE
 
@@ -107,8 +102,8 @@
 % Usage:
 % singular, within sentence       = \ac{gui}
 % singular, beginning of sentence = \Ac{gui}
-% plural, within sentence       = \acp{gui}
-% plural, beginning of sentence = \Acp{gui}
+% plural, within sentence         = \acp{gui}
+% plural, beginning of sentence   = \Acp{gui}
 \begin{acronym}
     \acro{gui}[GUI]{Graphical User Interface}
     \acro{ide}[IDE]{Integrated Development Environment}
@@ -126,7 +121,9 @@
 \begin{abstract}
 \lipsum[1][3-10]
 \{\,\faWarning{}The abstract does neither mention a teaching module nor a team/project,
-it is a summary of the content of the technical report, thus, the objectives and architecture.\}
+it is a summary of the content, thus, the objectives and architecture.
+Do NOT remove the abstract \faWarning{}, this section is mandatory.
+You should consider comparing your self-written abstract with the result of a generative AI that summarizes your content after you have written a nearly stable draft version. However, do not use a verbatim copy to replace your abstract, just use generative AI for inspirational purposes.\}
 \end{abstract}
 
 % A list of IEEE Computer Society appoved keywords can be obtained at
@@ -142,9 +139,13 @@ The cs-techrep \LaTeX\ class is based on \textsmaller{IEEE}tran class \cite{ieee
 In addition, be aware of the supplementary \textsmaller{IARIA} editorial rules \cite{iaria2009editorialrules} \faWarning{} that provide a beginner-friendly set of further advices.
 It is recommended to use a grammar tool, e.\,g., the LanguageTool \cite{languagetool} browser plugin in combination with Overleaf \cite{overleaf}.
 
-The pipe symbol \textquote{\textbar{}} in the headings represents alternatives. Choose one and remove the others. The selectively provided quoted terms are special German alternatives.
+The title of your paper should not exceed two lines \faWarning{}. In exceptional cases, three lines might be allowed. A four-line-title is absolutely forbidden (hint: use the longer form in the abstract).
 
-The problem statement needs to be written from perspective of a subject-matter expert (\textquote{Fachkonzept}). Like an elevator pitch / mission statement \faWarning{}. NOT from a technical perspective.
+For capitalization of titles and section headings, use a web tool like \href{https://capitalizemytitle.com/style/Chicago/}{Capitalize My Title} \faWarning{} with the option \texttt{Chicago} for capitalization rules by Chicago Manual of Style (CMOS).
+
+The pipe symbol \textquote{\textbar{}} in the section headings represents alternatives! Choose one and remove the others \faWarning{}. The selectively provided quoted terms are special German alternatives. You may deviate from the structure of this example document and its exemplary section headings.
+
+The problem statement needs to be written from perspective of a subject-matter expert (\textquote{Fachkonzept}). Like an elevator pitch / mission statement \faWarning{} and NOT from a technical perspective.
 
 \section{Optional: Related Work \textbar{} State of the Art \textbar{} Methods \textbar{} Data Acquisition}
 \lipsum[2]
@@ -155,9 +156,9 @@ Provides
 (2) the most important technical and organizational preconditions (\textquote{Rahmenbedingungen}),
 (3) quality/non-functional requirements (\textquote{Qualitätsziele}), and/or
 (4) architectural style design decisions with formative patterns of the solution (\textquote{Architekturstil})
-as well as (5) the applied programming language.
+as well as (5) the applied programming language(s).
 
-\section{Architecture of FancyName \textbar{} Results \textbar{} Structural Design \textbar{}  \textquote{Bausteinsicht}}
+\section{Architecture of CatchyName \textbar{} Results \textbar{} Structural Design \textbar{} \textquote{Bausteinsicht}}
 
 \subsection{Technology Stack \textbar{} Overall System} %\textbar{} \textquote{Gesamtsystem}}
 Provides
@@ -190,47 +191,7 @@ Could include (3) a software bill of materials (SBOM), at least for the major li
 \section{Conclusion and Future Work \textbar{} \\ \textquote{Fazit und Ausblick}}
 \lipsum[7]
 
-
-%%% Advisor
-\nocite{StNe23foodfresh}
-
-%%% First-Author
-\nocite{NeLe13adhocCoop}
-\nocite{Neumann2012lni}
-\nocite{NeLe12alphaFlow}
-\nocite{NeHL12hydra}
-\nocite{NeWL12offsync}
-\nocite{NSWL11alphaadaptive}
-\nocite{NeFL10oxdbs}
-\nocite{NeLe10alphaUC}
-\nocite{NeLe09alphaflow}
-\nocite{NeLe09dmps}
-\nocite{NHSL09oxdbs} % DE
-\nocite{NeWL09xdsrig} % DE
-\nocite{NRDL09deus}
-
-%%% Co-Authorship
-\nocite{LeNe24vocattllm}
-\nocite{PANP23seccloudfogai}
-\nocite{WaNe12alphaoffsync}
-\nocite{ToNe11alphaprops}
-\nocite{FDI+10esmmog}
-\nocite{JBN+10fcmdb}
-\nocite{ILN+09semrttx}
-\nocite{IND+09lzatav} % DE
-\nocite{MeNe04testejb}
-
-%%% Monographic Work
-\nocite{Neumann2013dissBook}
-\nocite{Neumann2012dissPreprint}
-\nocite{neumann2005da}
-\nocite{neumann2004sa}
-
-%%% TechRep / Non-Peer-Reviewed
-
-\nocite{StNe24kosmosis-TR}
-\nocite{SaNe24othfb}
-
+%%% Previous TechReps
 \nocite{ModA-TR-2023SS-WAE-TeamWeiss-Neunerln}
 \nocite{ModA-TR-2023SS-BDCC-TeamRot-CompVisPipeline}
 \nocite{ModA-TR-2023SS-BDCC-TeamBlau-NauticalNonsense}
@@ -249,14 +210,8 @@ Could include (3) a software bill of materials (SBOM), at least for the major li
 \nocite{ModA-TR-2021SS-WAE-TeamRot-FireForceDefense}
 \nocite{ModA-TR-2021SS-WAE-TeamGruen-MedPlanner}
 
-\nocite{NeRL12deus}
-\nocite{LNR+11egr}
-
 % ======== References =========
-%\vfill % To end last page and thus get bibliography "behind" subfigure example, only this allows pbalance to level columns at the last page correctly (but no other balance-package can handle this situation better than pbalance, either). % However, pbalance ist not compatible with arxiv.
-\begingroup
 \sloppy
 \printbibliography[notcategory=selfref]
-\endgroup 
-    
+
 \end{document}
