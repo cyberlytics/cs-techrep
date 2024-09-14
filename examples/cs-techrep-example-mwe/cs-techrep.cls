@@ -12,13 +12,25 @@
 \NeedsTeXFormat{LaTeX2e}
 
 % Provide the name of your document class, the date it was last updated, and a comment about what it's used for
-\ProvidesClass{cs-techrep}[2024/05/04 Technical Reports in Computer Science and Software Engineering v0.3]
+\ProvidesClass{cs-techrep}[2024/09/16 Technical Reports in Computer Science and Software Engineering v0.4]
 
 % Define marker counter for options (counter are global in latex):
+\newcounter{cstechrep@subfigtracker}
+\newcounter{cstechrep@subcaptiontracker}
 \newcounter{cstechrep@pbalancetracker}
 \newcounter{cstechrep@flushendtracker}
 
 % Declare options:
+
+\DeclareOption{subfig}{
+  \setcounter{cstechrep@subfigtracker}{1}
+  \typeout{cs-techrep class: subfig option is set (use subfloat command).}
+}
+\DeclareOption{subcaption}{
+  \setcounter{cstechrep@subcaptiontracker}{1}
+  \typeout{cs-techrep class: subcaption option is set (use subfigure command).}
+}
+
 \DeclareOption{onecolumn}{\OptionNotUsed} % IEEE option onecolumn will be ignored
 
 \DeclareOption{pbalance}{
@@ -427,10 +439,6 @@
 \RequirePackage{pdflscape}
 \RequirePackage{afterpage}
 
-% Allows to hyphenate a word that contains a dash:
-% https://stackoverflow.com/questions/2193307/how-do-i-get-latex-to-hyphenate-a-word-that-contains-a-dash
-\RequirePackage[shortcuts]{extdash} % Use \-/ for a breakable dash that does not prevent the remainer of the word to be hyphenated
-
 % requires, e.g., \PassOptionsToPackage{
 % type=CC,modifier=by,version=4.0}{doclicense} before \documentclass
 \RequirePackage[hyperxmp=false,lang=English]{doclicense}
@@ -482,6 +490,17 @@
 
 \IEEEspecialpapernotice{\cstechrepType: \cstechrepNumber, \citemonth{selfref} \cstechrepYear}
 
+% subfigure captions with parentheses and footnotesize:
+\ifnum\value{cstechrep@subfigtracker}=1
+  \typeout{cs-techrep class: load subfig package (use subfloat command).}
+  \RequirePackage[caption=false,font=footnotesize]{subfig}
+\fi
+\ifnum\value{cstechrep@subcaptiontracker}=1
+  \typeout{cs-techrep class: load subcaption package (use subfigure command).}
+  \RequirePackage{subcaption}
+  \captionsetup[subfigure]{labelformat=parens,font=footnotesize}
+\fi
+
 % Balance/level columns at the last page / in bibliography
 % DISCLAIMER: No solution is a 100%/perfect one!
 % Mainstream option: pbalance (see https://ctan.org/pkg/pbalance)
@@ -495,6 +514,14 @@
   \typeout{cs-techrep class: load flushend package.}
   \RequirePackage{flushend}
 \fi
+
+% ========================================================
+% Packages that need to be loaded last:
+
+% Allows to hyphenate a word that contains a dash:
+% https://stackoverflow.com/questions/2193307/how-do-i-get-latex-to-hyphenate-a-word-that-contains-a-dash
+\RequirePackage[shortcuts]{extdash} % Use \-/ for a breakable dash that does not prevent the remainer of the word to be hyphenated
+% ========================================================
 
 % Finally, we'll use \endinput to indicate that LaTeX can stop reading this file. LaTeX will ignore anything after this line.
 \endinput
