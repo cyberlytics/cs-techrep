@@ -1,0 +1,197 @@
+\PassOptionsToPackage{type=CC,modifier=by,version=4.0}{doclicense}
+\documentclass[conference,a4paper,flushend]{cs-techrep} % Optional: flushend or pbalance
+\pdfoutput=1 % pdflatex hint for arxiv.org (within first 5 lines)
+
+% Class cs-techrep.cls loads biblatex / biber with predefined options
+\addbibresource{embedded.bib}       % its content is declared below, embedded within this tex-file
+\addbibresource{cpn_all_all.bib}    % includes all previous CyberLytics@OTH-AW technical reports
+
+% ======================================================================
+% EDIT THESE:
+
+\cstechrepAuthorListTex{Vorname Nachname, Christoph P.\ Neumann\,\orcidlink{0000-0002-5936-631X}}
+% for bibtex:
+\cstechrepAuthorListBib{Vorname Nachname and Christoph P. Neumann}
+
+% Capitalization: https://capitalizemytitle.com/style/Chicago/
+\cstechrepTitleTex{The cs-techrep \textsmaller{CTAN} Package and LaTeX Class Formatting Example: TechRep in Computer Science}
+ % IF you need manual linebreaks in the titel, then clone the title without linebreaks for BibTeX:
+\cstechrepTitleBib{{\cstechrepTitleTex}}
+
+\cstechrepDepartment{Department of Electrical Engineering, Media, and Computer Science}
+\cstechrepInstitution{Ostbayerische Technische Hochschule Amberg\-/Weiden}
+\cstechrepAddress{Amberg, Germany}
+\cstechrepType{Technical Report}
+\cstechrepYear{2025} % CTAN
+\cstechrepMonth{03} % CTAN
+\cstechrepNumber{SCWR-\cstechrepYear{}-99}
+\cstechrepLang{english}  % en-US
+
+% Special remark on babel/csquotes terminology in regard with US-vs-UK:
+% en-US  = [english]/[american]/[usenglish] (+ [canadian])
+% en-UK  =           [british] /[ukenglish] (+ [australian]) <OXFORD>
+% For cs-techrep (like ACM), the recommended english variant is en-US!
+
+% DO NOT DELETE THIS:
+\filecontentsForceExpansion|[] % force command expansion inside a filecontents* environment
+\begin{filecontents*}[overwrite]{selfref.bib}
+    @TECHREPORT{selfref,
+        author = {|cstechrepAuthorListBib},
+        title  = {\cstechrepTitleBib},
+        institution = {\cstechrepInstitution, \cstechrepDepartment},
+        type   = {\cstechrepType},
+        number = {\cstechrepNumber},
+        year   = {|cstechrepYear},
+        month  = {|cstechrepMonth},
+        langid  = {|cstechrepLang},
+    }
+\end{filecontents*}
+
+% ======================================================================
+% EDIT THIS:
+
+\begin{filecontents}[overwrite]{embedded.bib}
+@online{ieee2015howto,
+	author = {Michael Shell},
+	title = {How to Use the {IEEEtran} \LaTeX\ Class},
+	url = {http://mirrors.ctan.org/macros/latex/contrib/IEEEtran/IEEEtran_HOWTO.pdf},
+	year = {2015},
+	urldate = {2025-03-10}
+}
+@online{ieee2018formattingrules,
+	author = {{IEEE}},
+	title = {Conference Template and Formatting Specifications},
+	url = {https://www.ieee.org/content/dam/ieee-org/ieee/web/org/conferences/Conference-template-A4.doc},
+	year = {2018},
+	urldate={2025-03-10}
+}
+@online{iaria2014formattingrules,
+	author = {{IARIA}},
+	title = {Formatting Rules},
+	url = {http://www.iaria.org/formatting.doc},
+	year = {2014},
+	urldate={2025-03-10}
+}
+@online{iaria2009editorialrules,
+	_author = {Cosmin Dini},
+	author = {{IARIA}},
+	title = {Editorial Rules},
+	url = {https://www.iaria.org/editorialrules.html},
+	year = {2009},
+	urldate={2025-03-10}
+}
+@online{languagetool,
+	author = {{LanguageTooler GmbH}},
+	title  = {{LangueTool}},
+	url    = {https://languagetool.org/overleaf},
+	urldate={2025-03-10}
+}
+@online{overleaf,
+	author = {{Digital Science UK Limited}},
+	title  = {{Overleaf}},
+	url    = {https://www.overleaf.com},
+	urldate={2025-03-10}
+}
+@online{elsevier-imrad,
+	author = {Angel Borja},
+	title  = {11 steps to structuring a science paper editors will take seriously},
+	url    = {https://www.elsevier.com/connect/11-steps-to-structuring-a-science-paper-editors-will-take-seriously},
+	year   = 2011,
+	urldate={2025-03-10}
+}
+@online{wiki:techrep,
+	author = {{Wikipedia}},
+	title  = {Technical report},
+	url    = {https://en.wikipedia.org/wiki/Technical_report},
+	urldate={2025-03-10}
+}
+\end{filecontents}
+
+\usepackage{fontawesome} % i.a., \faWarning{}
+\usepackage{relsize}     % i.a., \textsmaller{...}
+\usepackage{lipsum}      % for blindtext
+\usepackage{xurl}        % allow URL breaks at any alphanumerical character
+
+% ======================================================================
+
+% cf. https://ctan.org/pkg/acronym
+% Usage:
+% singular, within sentence       = \ac{gui}
+% singular, beginning of sentence = \Ac{gui}
+% plural, within sentence       = \acp{gui}
+% plural, beginning of sentence = \Acp{gui}
+\begin{acronym}
+    \acro{gui}[GUI]{Graphical User Interface}
+    \acro{ide}[IDE]{Integrated Development Environment}
+\end{acronym}
+
+% https://www.silbentrennung24.de/
+% https://www.hyphenation24.com/
+\hyphenation{block-chain block-chains Ethe-re-um}
+
+\begin{document}
+\selectlanguage{\cstechrepLang}
+
+\maketitle
+
+\begin{abstract}
+This paper demonstrates an example of a technical report in computer science or software engineering, based on the \texttt{cs-techrep} LaTeX class.
+The example is intended for beginners, e.\,g., undergraduate students.
+It contains a basic outline template and usually fills it with dummy text, but some sections are describing the intent of the outline template and its sections.
+Graphic exclamation marks highlight important remarks.
+\end{abstract}
+
+% A list of IEEE Computer Society appoved keywords can be obtained at
+% http://www.computer.org/mc/keywords/keywords.htm
+\begin{IEEEkeywords}
+template; lorem ipsum.
+\end{IEEEkeywords}
+
+\{\,\faWarning{}The abstract does neither mention a thesis in which context a technical report is written nor an institution or any other organizational aspects.
+It is a summary of the content of the technical report, thus, usually the objectives and architecture of a piece of software.
+Do NOT remove the abstract, this section is mandatory.
+Do NOT use special characters, symbols, or math in your title or abstract.
+Do NOT use references in the abstract, avoid abbreviations or acronyms.
+The abstract must look as one paragraph only.
+Ideally, end the abstract with one sentence stressing out the main output of the paper.\}
+
+\section{Introduction}
+
+The cs-techrep formatting is adopted both from \textsmaller{IEEE} \cite{ieee2018formattingrules} and \textsmaller{IARIA} \cite{iaria2014formattingrules} styles.
+The cs-techrep \LaTeX\ class is based on \textsmaller{IEEE}tran class \cite{ieee2015howto}.
+In addition, be aware of the \faWarning{} \textsmaller{IARIA} editorial rules \cite{iaria2009editorialrules} that provide a compact, online-available, and beginner-friendly set of further advices.
+
+\{\faWarning{} For beginners:
+Familiarize yourself with IMRaD \cite{elsevier-imrad}, the predominant structure for organizing research articles.
+Additionally, ensure you have a solid understanding of technical reports as a form of scientific literature,
+at minimum, as outlined on Wikipedia \cite{wiki:techrep}.
+Be cautious not to adopt an oversimplified interpretation of the TechRep term.\}
+
+It is recommended to use a grammar tool, e.\,g., the LanguageTool \cite{languagetool} browser plugin in combination with Overleaf \cite{overleaf}.
+%
+The \texttt{cs-techrep.cls} is intended for \faWarning{} \texttt{pdflatex} plus \texttt{biblatex}\;/\;\texttt{biber} as TeX stack.
+
+\lipsum[22]
+
+\{\faWarning{} Recommendation: Introduction must end with a paragraph describing the structure of the paper!\}
+The remainder of the paper is organized as follows: In Section~II, …
+
+\section{Methods \textbar{} Related Work}
+\lipsum[23]
+
+\section{Results}
+\lipsum[24]
+
+\section{Discussion \textbar{} Evalution}
+\lipsum[25]
+
+\section{Conclusion}
+\{\faWarning{} Recommendation: Last section must be a conclusion and might also provide an outlook on future work.\}
+\lipsum[26]
+
+\{\,\faWarning{} For beginners: you must NOT leave the bibliography blank. Add appropriate references to your related work.\}\\
+\{\,\faWarning{} Recommendation: bibliographic \textsmaller{@ONLINE} entries should have an \texttt{urldate} property as access date.\}
+% ======== References =========
+\printbibliography[notcategory=selfref]
+
+\end{document}

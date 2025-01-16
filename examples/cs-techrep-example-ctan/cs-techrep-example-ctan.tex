@@ -1,10 +1,9 @@
 \PassOptionsToPackage{type=CC,modifier=by,version=4.0}{doclicense}
-\documentclass[conference,a4paper,flushend]{cs-techrep}
+\documentclass[conference,a4paper,flushend]{cs-techrep} % Optional: flushend or pbalance
 \pdfoutput=1 % pdflatex hint for arxiv.org (within first 5 lines)
 
 % Class cs-techrep.cls loads biblatex / biber with predefined options
 \addbibresource{embedded.bib}       % its content is declared below, embedded within this tex-file
-\addbibresource{webdev_commons.bib} % includes REST, React, Angular, Vue, Svelte, Docker, AWS-*, Socket.IO, and many more!
 \addbibresource{cpn_all_all.bib}    % includes all previous CyberLytics@OTH-AW technical reports
 
 % ======================================================================
@@ -12,16 +11,15 @@
 
 \cstechrepAuthorListTex{Christoph P.\ Neumann\,\orcidlink{0000-0002-5936-631X}}
 % Team example:
-%\cstechrepAuthorListTex{Vorname1 Nachname1, Vorname2 Nachname2, Vorname3 Nachname3, Vorname4 Nachname4,\\ Vorname5 Nachname5, Vorname6 Nachname6, Christoph P.\ Neumann\,\orcidlink{0000-0002-5936-631X}}
+%\cstechrepAuthorListTex{Vorname1 Nachname1, Vorname2 Nachname2, Vorname3 Nachname3, Vorname4 Nachname4,\\ Vorname5 Nachname5, Vorname6 Nachname6, and Christoph P.\ Neumann\,\orcidlink{0000-0002-5936-631X}}
 \cstechrepAuthorListBib{Christoph P. Neumann}
 % Team example:
 %\cstechrepAuthorListBib{Vorname1 Nachname1 and Vorname2 Nachname2 and Vorname3 Nachname3 and Vorname4 Nachname4 and Vorname5 Nachname5 and Vorname6 Nachname6 and Christoph P. Neumann}
 
 % Capitalization: https://capitalizemytitle.com/style/Chicago/
-\cstechrepTitleTex{The cs-techrep Paper Example of a Technical Report in Computer Science or Software Engineering}
+\cstechrepTitleTex{The cs-techrep \textsmaller{CTAN} Package and LaTeX Class Formatting Example: TechRep in Computer Science}
  % IF you need manual linebreaks in the titel, then clone the title without linebreaks for BibTeX:
 \cstechrepTitleBib{{\cstechrepTitleTex}}
-%\cstechrepTitleBib{The cs-techrep \LaTeX{} Class Example of a Software Engineering Technical Report}
 
 \cstechrepDepartment{CyberLytics\-/Lab at the Department of Electrical Engineering, Media, and Computer Science}
 %\cstechrepDepartment{CyberLytics\-/Lab an der Fakultät Elektrotechnik, Medien und Informatik} % DE
@@ -30,8 +28,8 @@
 %\cstechrepAddress{Amberg, Deutschland} % DE
 \cstechrepType{Technical Report}
 %\cstechrepType{Technischer Bericht} % DE
-\cstechrepYear{2024} % CTAN
-\cstechrepMonth{10} % CTAN
+\cstechrepYear{2025} % CTAN
+\cstechrepMonth{03} % CTAN
 \cstechrepNumber{CL-TR-\cstechrepYear{}-99}
 \cstechrepLang{english}  % en-US
 %\cstechrepLang{ngerman} % DE
@@ -64,42 +62,53 @@
     author = {Michael Shell},
     title = {How to Use the {IEEEtran} \LaTeX\ Class},
     url = {http://mirrors.ctan.org/macros/latex/contrib/IEEEtran/IEEEtran_HOWTO.pdf},
-    year = {2015}
+    year = {2015},
+    urldate = {2025-03-10}
 }
 @online{ieee2018formattingrules,
     author = {{IEEE}},
     title = {Conference Template and Formatting Specifications},
     url = {https://www.ieee.org/content/dam/ieee-org/ieee/web/org/conferences/Conference-template-A4.doc},
-    year = {2018}
+    year = {2018},
+    urldate={2025-03-10}
 }
 @online{iaria2014formattingrules,
     author = {{IARIA}},
     title = {Formatting Rules},
     url = {http://www.iaria.org/formatting.doc},
-    year = {2014}
+    year = {2014},
+    urldate={2025-03-10}
 }
 @online{iaria2009editorialrules,
     _author = {Cosmin Dini},
     author = {{IARIA}},
     title = {Editorial Rules},
     url = {https://www.iaria.org/editorialrules.html},
-    year = {2009}
+    year = {2009},
+    urldate={2025-03-10}
 }
 @online{languagetool,
     author = {{LanguageTooler GmbH}},
-    title  = {{LanguageTool: AI-based grammar checker}},
-    url    = {https://languagetool.org/overleaf}
+    title  = {{LangueTool}},
+    url    = {https://languagetool.org/overleaf},
+    urldate={2025-03-10}
 }
 @online{overleaf,
     author = {{Digital Science UK Limited}},
     title  = {{Overleaf}},
-    url    = {https://www.overleaf.com}
+    url    = {https://www.overleaf.com},
+    urldate={2025-03-10}
 }
 \end{filecontents}
 
 \usepackage{fontawesome} % i.a., \faWarning{}
 \usepackage{relsize}     % i.a., \textsmaller{...}
 \usepackage{lipsum}      % for blindtext
+%\usepackage{xurl}       % allow URL breaks at any alphanumerical character (can help with some bibliographies)
+
+% For the types of users diagram (like an organigram / org chart)
+\usepackage[edges]{forest} % = pgf/TikZ-based package for drawing trees
+\usetikzlibrary{fit}
 
 % ======================================================================
 
@@ -124,16 +133,10 @@
 \maketitle
 
 \begin{abstract}
-This paper demonstrates an example of a technical report in computer science or software engineering, based on the \texttt{cs-techrep} \LaTeX{} class.
+This paper demonstrates an example of a technical report in computer science or software engineering, based on the \texttt{cs-techrep} LaTeX class.
 The example is intended for beginners, e.\,g., undergraduate students.
 It contains a basic outline template and usually fills it with dummy text, but some sections are describing the intent of the outline template and its sections.
 Graphic exclamation marks highlight important remarks.
-%
-\{\,\faWarning{}The abstract does neither mention a thesis in which context a technical report is written nor an institution or any other organizational aspects.
-It is a summary of the content of the technical report, thus, usually the objectives and architecture of a piece of software.
-Do NOT remove the abstract, this section is mandatory.
-Do NOT use special characters, symbols, or math in your title or abstract.
-Do NOT use cites in your abstract.\}
 \end{abstract}
 
 % A list of IEEE Computer Society appoved keywords can be obtained at
@@ -141,6 +144,14 @@ Do NOT use cites in your abstract.\}
 \begin{IEEEkeywords}
 template; lorem ipsum.
 \end{IEEEkeywords}
+
+\{\,\faWarning{}The abstract does neither mention a thesis in which context a technical report is written nor an institution or any other organizational aspects.
+It is a summary of the content of the technical report, thus, usually the objectives and architecture of a piece of software.
+Do NOT remove the abstract, this section is mandatory.
+Do NOT use special characters, symbols, or math in your title or abstract.
+Do NOT use references in the abstract, avoid abbreviations or acronyms.
+The abstract must look as one paragraph only.
+Ideally, end the abstract with one sentence stressing out the main output of the paper.\}
 
 \section{Introduction and Objectives \textbar{} Functional Requirements \textbar{} Problem Statement}
 
@@ -151,18 +162,58 @@ It is recommended to use a grammar tool, e.\,g., the LanguageTool \cite{language
 
 The pipe symbol \textquote{\textbar{}} in the headings represents alternatives. Choose one and remove the others. The selectively provided quoted terms are special German alternatives.
 
-The problem statement needs to be written from perspective of a subject-matter expert (\textquote{Fachkonzept}). Like an elevator pitch / mission statement \faWarning{}. NOT from a technical perspective.
+The problem statement needs to be written from perspective of a subject-matter expert (\textquote{Fachkonzept}). Like an elevator pitch / mission statement \faWarning{}. NOT from a technical perspective. 
+
+\{\,\faWarning{} At some point you might introduce the types of users, for example, as in \cref{fig:TypeOfUsers}.\}
+
+\begin{figure}[htb!]
+	\centering
+	\begin{forest}
+		for tree={draw,rounded corners,align=center},
+		forked edges,
+		[User
+		[Student]
+		[Teacher
+		[Director]
+		[Course Teacher]
+		]
+		[Staff]
+		]
+		\node [fit=(current bounding box.south east) (current bounding box.north west)] {};
+	\end{forest}
+	\caption{Types of Users}
+	\label{fig:TypeOfUsers}
+\end{figure}
+
+\{\,\faWarning{} It is recommended to end the first section with a paragraph describing the structure of the paper.\}
 
 \section{Optional: Related Work \textbar{} State of the Art \textbar{} Methods \textbar{} Data Acquisition}
 \lipsum[12]
+
 
 \section{Architectural Goals} % \textbar{} \textquote{Architekturziele}}
 Provides
 (1) a visualization of the external systems and users with which the system interacts (\textquote{Kontextabgrenzung}),
 (2) the most important technical and organizational preconditions (\textquote{Rahmenbedingungen}),
-(3) quality/non-functional requirements (\textquote{Qualitätsziele}), and/or
+(3) quality/non-functional requirements (\textquote{Qualitätsziele}), cf. \cref{fig:archgoals}, and/or
 (4) architectural style design decisions with formative patterns of the solution (\textquote{Architekturstil})
 as well as (5) the applied programming language.
+
+\begin{table}[htb!]
+\begin{tabularx}{\textwidth}{ >{\bfseries}l X }
+	\toprule
+	\textbf{Quality Req.} & \textbf{Description} \\
+	\midrule
+	Usability & Intuitive operation and easy to learn \\
+	Security & Content is protected against unauthorised access \\
+	Maintainability & Easy expandability and modification \\
+	Easy to operate & The application can be used without major adjustments
+	be used \\
+	\bottomrule
+\end{tabularx}
+\caption{Quality/non-functional requirements (\textquote{Qualitätsziele})}
+\label{fig:archgoals}
+\end{table}
 
 \section{Architecture of FancyName \textbar{} Results \textbar{} Structural Design \textbar{}  \textquote{Bausteinsicht}}
 
@@ -195,17 +246,64 @@ Could include (3) a software bill of materials (SBOM), at least for the major li
 \lipsum[16]
 
 \section{Conclusion and Future Work \textbar{} \\ \textquote{Fazit und Ausblick}}
-\lipsum[17]
 
+\vspace{\baselineskip}
+\{\,\faWarning{} Beginners' guide against \textbf{kindergarten mistakes}:
+Expand each acronym only when first used; then use only the acronym (however, do not take the abstract into account of this rule).
+Insert at least a sentence between a section title and subsection title!
+In-text references (i.e., \enquote{text [x][y]\ldots{}}), leave a space between \enquote{text} and \enquote{[x]}!
+Prefer references to footnotes.
+Explain abbreviations in the paper text.
+All \enquote{section x}, \enquote{figure x}, \enquote{table x} must be \enquote{Section x}, \enquote{Figure x}, \enquote{Table x} (i.e., capital letter)!
+Across the entire paper; always e.g., and i.e., are followed by a comma \enquote{,}!
+Across the entire paper; \enquote{which} is preceeded by a comma \enquote{,} or replace a which-without-a-preceeding-comma with \enquote{that}.
+Check your raster images for appropriate quality!\}
 
-\{\,\faWarning{} You must not leave the bibliography blank. Add appropriate references to your related work.\}
-
+\vspace{\baselineskip}
+\{\,\faWarning{} You must not leave the bibliography blank! Add appropriate references to your related work.\}
+%
+%\vspace{\baselineskip}
+A selection of previous technical reports of the CyberLytics lab
+%
+%
+%% INSTRUCTION: Remove the irrelevant ones and cite
+%% the ones that are actually related on technological
+%% level or that address the same domain.
+%% This listing is just as a stimulus:
+\cite{%
+%ModA-TR-2025WS-BDT-TeamRot-VoteVibe,%
+%ModA-TR-2025WS-BDT-TeamBlau-MuskMonitor,%
+%ModA-TR-2024SS-CCT-TeamGruen-CloudDice,%
+%ModA-TR-2024SS-BCN-TeamCyan-SkillIssue,%
+%ModA-TR-2024SS-BCN-TeamGelb-GoalGuru,%
+%ModA-TR-2024SS-BCN-TeamWeiss-InfluenzaConnect,%
+%ModA-TR-2024SS-BCN-TeamGruen-NanoVend,%
+ModA-TR-2024SS-BCN-TeamRot-StockSentinel,%
+%ModA-TR-2024SS-WAE-TeamCyan-Connect4IfYouCan,%
+%ModA-TR-2024SS-WAE-TeamWeiss-Geodingens,%
+%ModA-TR-2024SS-WAE-TeamGruen-MunchMunch,%
+ModA-TR-2023SS-WAE-TeamWeiss-Neunerln,%
+%ModA-TR-2023SS-BDCC-TeamRot-CompVisPipeline,%
+ModA-TR-2023SS-BDCC-TeamBlau-NauticalNonsense,%
+%ModA-TR-2023SS-BCN-TeamGruen-TorpedoTactics,%
+ModA-TR-2023SS-BCN-TeamCyan-Stockbird,%
+%ModA-TR-2023SS-BCN-TeamBlau-FancyChess,%
+ModA-TR-2023WS-SWT-TeamRot-SGDb,%
+%ModA-TR-2023WS-SWT-TeamGruen-OPCUANetzwerk,%
+ModA-TR-2022SS-WAE-TeamWeiss-WoIstMeinGeld,%
+%ModA-TR-2022SS-BDCC-TeamWeiss-TwitterDash,%
+ModA-TR-2022SS-BDCC-TeamRot-Reddiment,%
+%ModA-TR-2022SS-BDCC-TeamGruen-ExplosionGuy,%
+%ModA-TR-2022SS-BDCC-TeamCyan-OTHWiki,%
+%ModA-TR-2022WS-SWT-TeamGruen-Graphvio,%
+ModA-TR-2021SS-WAE-TeamWeiss-CovidDashboard,%
+ModA-TR-2021SS-WAE-TeamRot-FireForceDefense,%
+ModA-TR-2021SS-WAE-TeamGruen-MedPlanner}
+%
+%
+is included as reference and further example.
 
 % ======== References =========
-%\vfill % To end last page and thus get bibliography "behind" subfigure example, only this allows pbalance to level columns at the last page correctly (but no other balance-package can handle this situation better than pbalance, either). % However, pbalance ist not compatible with arxiv.
-\begingroup
-\sloppy
 \printbibliography[notcategory=selfref]
-\endgroup 
-    
+
 \end{document}

@@ -1,4 +1,4 @@
-%# Copyright (c) 2023-2024 Christoph P. Neumann,
+%# Copyright (c) 2023-2025 Christoph P. Neumann,
 %# Copyright (c) 2018-2021 Oliver Kopp
 %# Reference: https://latextemplates.github.io/
 
@@ -10,7 +10,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesClass{cs-techrep}[2024/10/24 Technical Reports in Computer Science and Software Engineering v0.5]
+\ProvidesClass{cs-techrep}[2025/03/30 TechReps in CS and SWE v0.7]
 
 % Define marker counter for options (counter are global in latex):
 
@@ -151,9 +151,9 @@
   protrusion=alltext-nott, % Ensure no changes at the edge of the listing.
   nopatch=eqnum, % fix unable to apply patch eqnum
   final % Always enable microtype, even if in draft mode.
-        % This helps finding bad boxes quickly. In the
-        % standard configuration, this template is always in the final mode,
-        % so this option only makes a difference if "pros" use the draft mode.
+        % This helps finding bad boxes quickly. In the standard
+        % configuration, this template is always in the final mode, so
+        % this option only makes a difference if "pros" use the draft mode.
 ]{microtype}
 
 % \texttt{test -- test} keeps the "--" as "--" 
@@ -172,6 +172,8 @@
 \RequirePackage{diagbox}
 
 \RequirePackage[cmyk, table]{xcolor}
+
+\RequirePackage{relsize} % allows for \textsmaller{..}
 
 \RequirePackage[nolist,smaller]{acronym}
 
@@ -270,14 +272,22 @@
   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
 }
 
-% Nicer tables (\toprule, \midrule, \bottomrule)
-\RequirePackage{booktabs}
+% Allows for column type X
+% In tabularx environment, e.g., \begin{tabularx}{\textwidth}{lX}
+\RequirePackage{tabularx}
+% Definition of booktabs commands (\toprule, \midrule, \bottomrule)
+% without booktabs package:
+% (However, the smallskip still breaks vertical lines!)
+\newcommand{\toprule}{\hline\noalign{\smallskip}}
+\newcommand{\midrule}{\noalign{\smallskip}\hline\noalign{\smallskip}}
+\newcommand{\bottomrule}{\noalign{\smallskip}\hline}
 
 % Extended enumerate, such as \begin{compactenum}
 \RequirePackage[alwaysadjust]{paralist}
 
 % Read: Is there a disadvantage to using natbib=true with biblatex?
-% https://tex.stackexchange.com/questions/149313/is-there-a-disadvantage-to-using-natbib-true-with-biblatex
+% https://tex.stackexchange.com/questions/149313
+% /is-there-a-disadvantage-to-using-natbib-true-with-biblatex
 % Substitutions:
 % Natbib \textcite = biblatex \textcite 
 % Natbib \citep = biblatex \parencite
@@ -287,7 +297,7 @@
     %style=ieee,        % english only
     sorting=none,       % nty, nyt, nyvt, anyt, anyvt, ynt, ydnt, none, debug
     sortcites=false,
-    citestyle=numeric-comp,
+    citestyle=numeric-comp, % BEWARE: ieee-comp would be preferred, but Overleaf does currently NOT support ieee-comp :-(
     bibstyle=numeric,
     backend=biber,
     bibencoding=utf8,   % = auto, utf8, ascii
@@ -310,7 +320,8 @@
 
 % Due to applied option defernumbers=true:
 % Prevent citations in the references are being numbered as '0' in ArXiv
-% https://tex.stackexchange.com/questions/463556/all-the-citations-in-the-references-are-being-numbered-as-0-in-arxiv-while-upl
+% https://tex.stackexchange.com/questions/463556
+% /all-the-citations-in-the-references-are-being-numbered-as-0-in-arxiv-while-upl
 \makeatletter
 \let\blx@rerun@biber\relax
 \makeatother
@@ -323,6 +334,14 @@
 
 % Same fontsize as without natbib
 \renewcommand{\bibfont}{\normalfont\small}
+
+% Zotero generates wrong language fields with wrong "en"
+% instead of correct "english" option, thus, despite
+% default biblatex clearlang, the "en" will incorrectly
+% be printed out, even in english papers.
+% Make "en" equivalent to "english" and/or its derivatives:
+\DeclareRedundantLanguages{en}{english,american,british,
+  canadian,australian,newzealand,USenglish,UKenglish}
 
 % Enable hyperlinked author names in the case of \textcite
 % Source: https://tex.stackexchange.com/a/76075/9075
@@ -344,25 +363,34 @@
   {\usebibmacro{postnote}}
 \makeatother
 
-% Enable nice comments
-\RequirePackage{pdfcomment}
+%% Enable nice TODO comments
+\RequirePackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\newcommand{\TODO}[1]{\todo[%
+linecolor=red,backgroundcolor=red!25,bordercolor=red]{#1}}
 
-\newcommand{\commentontext}[2]{%
-\colorbox{yellow!60}{#1}%
-\pdfcomment[color={0.234 0.867 0.211},%
-hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
+% bring the table caption in the same line as label "Table I"
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@makecaption}
+  {\\}
+  {.\ }
+  {}
+  {}
+\makeatother
 
-\newcommand{\commentatside}[1]{%
-\pdfcomment[color={0.045 0.278 0.643},icon=Note]{#1}}
-
-% Compatibality with packages todo, easy-todo, todonotes
-\newcommand{\todo}[1]{\commentatside{#1}}
-
-% Compatiblity with package fixmetodonotes
-\newcommand{\TODO}[1]{\commentatside{#1}}
+% For controlling the placement of the captions
+% (table: top | figure: bottom), the package caption
+% recommends to use package floatrow:
+% (Without foatrom, the positioning is determined by
+%  the textual (!) position of command \label in relation to
+%  includegraphics/begin-tabular; a well-known latex aspect.)
+\RequirePackage{floatrow}
+\floatsetup[table]{capposition=top,captionskip=5pt}
+\floatsetup[figure]{capposition=bottom,captionskip=8pt}
 
 % Put footnotes below floats
 % Source: https://tex.stackexchange.com/a/32993/9075
+% and allow floats in a twocolumn document with [t] or [b]
 \RequirePackage{stfloats}
 \fnbelowfloat
 
@@ -405,6 +433,13 @@ hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
 % Enable usage \cref{...} and \Cref{...} instead of \ref:
 % Type of reference included in the link.
 % That means, "Figure 5" is a full link instead of just "5".
+% !! Underlying rules for "capitalize" and "noabbrev": APA style
+% http://www.sagepub.com/upm-data/27160_APA_Style.pdf
+% Use a capital letter "S" when saying "In Section 2, we..."
+% Don't use capital letters when saying "There are four sections, ..."
+% Capitalize when figure is followed by a number, e.g., "In Figure 3, we...."
+% Don't use when no number follows, e.g., "The two figures ..."
+% (Please notice: CMOS would prefer lower letters, in contrast to APA.)
 \RequirePackage[capitalise,nameinlink,noabbrev]{cleveref}
 
 \crefname{listing}{Listing}{Listings}
@@ -418,7 +453,8 @@ hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
 \tcbuselibrary{listings}
 
 %introduce \powerset
-% See: http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
+% See: http://matheplanet.com/matheplanet/nuke/
+% html/viewtopic.php?topic=136492&post_id=997377
 \DeclareFontFamily{U}{MnSymbolC}{}
 \DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
 \DeclareFontShape{U}{MnSymbolC}{m}{n}{
@@ -433,17 +469,18 @@ hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
 
 \RequirePackage{xspace}
-%\newcommand{\eg}{e.\,g.\xspace}
-%\newcommand{\ie}{i.\,e.\xspace}
+%\newcommand{\eg}{e.\,g.,\xspace}
+%\newcommand{\ie}{i.\,e.,\xspace}
 \newcommand{\eg}{e.\,g.,\ }
 \newcommand{\ie}{i.\,e.,\ }
 
 % Enable hyphenation at other places as the dash.
-% Example: applicaiton\hydash specific
+% Example: application\hydash specific
 \makeatletter
 \newcommand{\hydash}{\penalty\@M-\hskip\z@skip}
 % Definition of "=
-% See: http://mirror.ctan.org/macros/latex/contrib/babel-contrib/german/ngermanb.dtx
+% See: http://mirror.ctan.org/macros/latex
+% /contrib/babel-contrib/german/ngermanb.dtx
 \makeatother
 
 % Enable copy and paste of text from the PDF
@@ -483,7 +520,8 @@ hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
 
 \makeatletter
 % allows for forcing command expansion inside a filecontents* environment
-% (cf. https://tex.stackexchange.com/questions/534035/macros-commands-inside-a-filecontents-environment-does-not-expand)
+% (cf. https://tex.stackexchange.com/questions/534035
+% /macros-commands-inside-a-filecontents-environment-does-not-expand)
 \def\filecontentsForceExpansion#1#2#3{
   \global\let\ltxspecials\dospecials
   \gdef\dospecials{\ltxspecials
@@ -538,7 +576,8 @@ hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
 % Packages that need to be loaded last:
 
 % Allows to hyphenate a word that contains a dash:
-% https://stackoverflow.com/questions/2193307/how-do-i-get-latex-to-hyphenate-a-word-that-contains-a-dash
+% https://stackoverflow.com/questions/2193307
+% /how-do-i-get-latex-to-hyphenate-a-word-that-contains-a-dash
 % Use \-/ for a breakable dash that does not prevent the remainer
 % of the word to be hyphenated.
 \RequirePackage[shortcuts]{extdash} 
